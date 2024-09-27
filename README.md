@@ -2,6 +2,8 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
+[![Build and Push Docker Image to Docker Hub](https://github.com/naumanzchaudhry/tasker-ui/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/naumanzchaudhry/tasker-ui/actions/workflows/docker-publish.yml)
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
