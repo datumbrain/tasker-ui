@@ -5,7 +5,8 @@ import { createPinia } from 'pinia'
 import router from './router'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:3001/api'
+import { loadFromEnv } from './utils.js'
+axios.defaults.baseURL = loadFromEnv('BASE_API_URL')
 
 // Intercept requests to set the Authorization header
 axios.interceptors.request.use(
