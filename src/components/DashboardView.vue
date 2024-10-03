@@ -3,8 +3,8 @@ import { ref, onMounted } from 'vue'
 import { useTodoStore } from '@/stores/todoStore'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
-import Button from '@/components/ui/button/BaseButton.vue'
-import Input from '@/components/ui/input/BaseInput.vue'
+import BaseButton from '@/components/ui/button/BaseButton.vue'
+import BaseInput from '@/components/ui/input/BaseInput.vue'
 
 const todoStore = useTodoStore()
 const userStore = useUserStore()
@@ -39,7 +39,7 @@ onMounted(async () => {
 <template>
   <div class="max-w-md mx-auto p-4">
     <h2 class="text-2xl font-semibold mb-4">Your Tasks</h2>
-    <Input v-model="newTodo" @keyup.enter="addTodo" placeholder="Add a new todo" class="mb-3" />
+    <BaseInput v-model="newTodo" @keyup.enter="addTodo" placeholder="Add a new todo" class="mb-3" />
     <ul class="space-y-2">
       <li v-for="todo in todoStore.todos" :key="todo.id" class="flex justify-between items-center">
         <div class="flex items-center">
@@ -51,10 +51,10 @@ onMounted(async () => {
           />
           <span :class="{ 'line-through': todo.completed }">{{ todo.text }}</span>
         </div>
-        <Button @click="deleteTodo(todo.id)" class="ml-4">Delete</Button>
+        <BaseButton @click="deleteTodo(todo.id)" class="ml-4">Delete</BaseButton>
       </li>
     </ul>
-    <Button @click="handleLogout" class="mt-4 w-full">Logout</Button>
+    <BaseButton @click="handleLogout" class="mt-4 w-full">Logout</BaseButton>
   </div>
 </template>
 
