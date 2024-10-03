@@ -1,7 +1,8 @@
 import { describe, it } from 'vitest'
 
-describe('HelloWorld', () => {
+describe('[Component] App', () => {
   it('renders properly', () => {
+    // placeholder test
     return true
   })
 })
