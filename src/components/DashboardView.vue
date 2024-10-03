@@ -27,8 +27,8 @@ const deleteTodo = async (id) => {
 }
 
 const handleLogout = () => {
-  userStore.logout() // Call logout method
-  router.push('/') // Redirect to login page
+  userStore.logout()
+  router.push('/')
 }
 
 onMounted(async () => {
