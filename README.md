@@ -53,3 +53,9 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+## Contributors
+
+| Name          | Role              |
+| ------------- | ----------------- |
+| Nauman Zafar  | Frontend Engineer |
+| Muaviya Imran | Frontend Engineer |
