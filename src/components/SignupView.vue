@@ -4,7 +4,7 @@ import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
 
 import Button from '@/components/ui/button/BaseButton.vue'
-import Input from '@/components/ui/input/Input.vue'
+import Input from '@/components/ui/input/BaseInput.vue'
 import Label from '@/components/ui/label/BaseLabel.vue'
 
 const userStore = useUserStore()
