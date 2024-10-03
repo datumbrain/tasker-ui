@@ -24,6 +24,10 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 Copy `.env.sample` to `.env` and update the values (if required)
 
+### Prerequisites for Running Locally
+
+- **Nodejs**: Ensure you have Nodejs version 18 or newer installed
+
 ### Install dependencies
 
 ```sh
@@ -48,8 +52,40 @@ npm run build
 npm run test:unit
 ```
 
+### Run Integration Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:integration
+```
+
+### Run Component Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:component
+```
+
+### Run Contract Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:contract
+```
+
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
 ```
+
+### Format with [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+
+```sh
+npm run format
+```
+
+## Contributors
+
+| Name          | Role              |
+| ------------- | ----------------- |
+| Nauman Zafar  | Frontend Engineer |
+| Muaviya Imran | Frontend Engineer |
