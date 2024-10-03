@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import { useTodoStore } from '@/stores/todoStore'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
-import Button from '@/components/ui/button/Button.vue'
+import Button from '@/components/ui/button/BaseButton.vue'
 import Input from '@/components/ui/input/Input.vue'
 
 const todoStore = useTodoStore()

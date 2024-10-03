@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '@/components/Login.vue'
-import Signup from '@/components/Signup.vue'
-import Dashboard from '@/components/Dashboard.vue'
-import { useUserStore } from '@/stores/userStore'
+import Login from '@/components/LoginView.vue'
+import Signup from '@/components/SignupView.vue'
+import Dashboard from '@/components/DashboardView.vue'
 
 const routes = [
   { path: '/', component: Login },
@@ -17,7 +16,6 @@ const router = createRouter({
 
 // Route guard
 router.beforeEach((to, from, next) => {
-  const userStore = useUserStore()
   const isAuthenticated = !!localStorage.getItem('token') // Check for token in local storage
 
   // If the route requires authentication and user is not authenticated

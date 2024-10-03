@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 
-import Login from '../Login.vue'
+import Login from '../LoginView.vue'
 
 describe('Login [Unit]', () => {
   beforeEach(() => {
