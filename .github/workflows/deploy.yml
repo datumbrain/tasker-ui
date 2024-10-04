@@ -19,7 +19,7 @@ jobs:
         # Authenticate with GCP by creating a temporary file from the secret
       - name: Set up Google Cloud Authentication
         run:
-          echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcp-key.json
+          echo "${{ secrets.GCP_SA_KEY }}" > ${{ runner.temp }} /gcp-key.json
 
           # Authenticate with GCP
       - name: Authenticate to Google Cloud
