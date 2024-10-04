@@ -17,8 +17,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+        # Authenticate with GCP by creating a temporary file from the secret
+      - name: Set up Google Cloud authentication
         run:
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          echo "${{ secrets.GCP_SA_KEY }}" > ${{ runner.temp }}/gcp-key.json
 
           # Authenticate with GCP
       - name: Authenticate to Google Cloud
@@ -33,9 +37,9 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           install_components: 'beta'
 
-          # Ensure gcloud is authenticated with the service account
-      - name: Set active gcloud account
-        run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}
+      # Ensure gcloud is authenticated with the service account
+      - name: Activate service account
+        run: gcloud auth activate-service-account --key-file=${{ runner.temp }}/gcp-key.json
 
       - name: Deploy UI to GCP
         run: |
