@@ -3,7 +3,7 @@ name: Build & Publish
 on:
   push:
     branches:
-      # - main # Trigger workflow on pushes to 'main' (Production)
+      - main # Trigger workflow on pushes to 'main' (Production)
       - uat # Trigger workflow on pushes to 'uat' (UAT)
 
 jobs:
