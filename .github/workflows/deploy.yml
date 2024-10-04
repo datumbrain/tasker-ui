@@ -42,7 +42,7 @@ jobs:
       - name: Deploy UI to GCP
         run: |
           if [[ "${{ github.event.inputs.environment }}" == "uat" ]]; then
-            gcloud run deploy tasker-ui-uat --image docker.io/naumanz/tasker-ui:uat --region us-central1 --allow-unauthenticated --set-env-vars PORT=8080
+            gcloud run deploy tasker-ui-uat --image docker.io/naumanz/tasker-ui:uat --region us-central1 --allow-unauthenticated
           elif [[ "${{ github.event.inputs.environment }}" == "prod" ]]; then
-            gcloud run deploy tasker-ui-prod --image docker.io/naumanz/tasker-ui:prod --region us-central1 --allow-unauthenticated --set-env-vars PORT=8080
+            gcloud run deploy tasker-ui-prod --image docker.io/naumanz/tasker-ui:prod --region us-central1 --allow-unauthenticated
           fi
