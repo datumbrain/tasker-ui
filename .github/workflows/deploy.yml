@@ -21,7 +21,7 @@ jobs:
 
       - name: Write GCP service account key to file
         run: |
-          cat "${{ secrets.GCP_SA_KEY }}" | base64 -di  > /home/runner/work/_temp/gcp-key.json
+          printf "${{ secrets.GCP_SA_TOKEN }}" | base64 -d  > /home/runner/work/_temp/gcp-key.json
 
       # Authenticate with GCP
       - name: Authenticate to Google Cloud
