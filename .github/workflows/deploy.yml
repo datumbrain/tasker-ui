@@ -16,9 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-
         # Authenticate with GCP by creating a temporary file from the secret
       - name: Set up Google Cloud Authentication
         run:
@@ -39,7 +36,10 @@ jobs:
 
       # Ensure gcloud is authenticated with the service account
       - name: Activate Service Account
-        run: gcloud auth activate-service-account --key-file=$HOME/gcp-key.json
+        run: gcloud auth activate-service-account --key-file=${{ runner.temp }}/gcp-key.json
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Deploy UI to GCP
         run: |
