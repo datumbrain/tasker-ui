@@ -16,17 +16,18 @@ COPY . .
 # Build the Vue app for production
 RUN npm run build
 
+
 # Step 2: Use Nginx to serve the built app
 FROM nginx:alpine as production-stage
+
+# Copy the custom nginx.conf to the container
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the built files from the build stage to Nginx
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# Remove default Nginx configuration and replace it with a custom one
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d/
 
-# Expose port 80
+# Expose port 8080
 EXPOSE 8080
 
 # Start Nginx server
