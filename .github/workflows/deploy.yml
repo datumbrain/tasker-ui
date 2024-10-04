@@ -33,6 +33,10 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           install_components: 'beta'
 
+          # Ensure gcloud is authenticated with the service account
+      - name: Set active gcloud account
+        run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}
+
       - name: Deploy UI to GCP
         run: |
           if [[ "${{ github.event.inputs.environment }}" == "uat" ]]; then
