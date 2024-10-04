@@ -19,6 +19,9 @@ jobs:
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
       - name: Write GCP service account key to file
         run: |
           echo "${{ secrets.GCP_SA_KEY }}" | tr -d '\r' | jq . > /home/runner/work/_temp/gcp-key.json
