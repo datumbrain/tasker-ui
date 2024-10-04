@@ -22,6 +22,10 @@ FROM nginx:alpine as production-stage
 # Copy the built files from the build stage to Nginx
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
+# Remove default Nginx configuration and replace it with a custom one
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/
+
 # Expose port 80
 EXPOSE 8080
 
