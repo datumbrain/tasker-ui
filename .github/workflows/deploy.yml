@@ -19,14 +19,11 @@ jobs:
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
-      - name: Install jq
-        run: sudo apt-get install -y jq
-
       - name: Write GCP service account key to file
         run: |
-          echo "${{ secrets.GCP_SA_KEY }}" | jq . > /home/runner/work/_temp/gcp-key.json
+          echo "${{ secrets.GCP_SA_KEY }}" > /home/runner/work/_temp/gcp-key.json
 
-          # Authenticate with GCP
+      # Authenticate with GCP
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
         with:
@@ -37,7 +34,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          install_components: 'beta'
 
       # Ensure gcloud is authenticated with the service account
       - name: Activate Service Account
