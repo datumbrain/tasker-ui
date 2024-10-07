@@ -39,10 +39,10 @@ jobs:
       - name: Activate Service Account
         run: gcloud auth activate-service-account --key-file=/home/runner/work/_temp/gcp-key.json
 
-      - name: Deploy UI to GCP
+      - name: Deploy API to GCP
         run: |
-          if [[ "${{ github.event.inputs.environment }}" == "uat" ]]; then
-            gcloud run deploy tasker-ui-uat --image docker.io/naumanz/tasker-ui:uat --region us-central1 --allow-unauthenticated
-          elif [[ "${{ github.event.inputs.environment }}" == "prod" ]]; then
-            gcloud run deploy tasker-ui-prod --image docker.io/naumanz/tasker-ui:prod --region us-central1 --allow-unauthenticated
-          fi
+          gcloud run deploy tasker-ui-${{ github.event.inputs.environment }} \
+          --image docker.io/naumanz/tasker-ui:${{ github.event.inputs.environment }} \
+          --region us-central1 \
+          --allow-unauthenticated \
+          --set-env-vars BASE_API_URL=${{ secrets.BASE_API_URL_UAT }}
