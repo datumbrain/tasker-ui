@@ -45,4 +45,4 @@ jobs:
           --image docker.io/naumanz/tasker-ui:${{ github.event.inputs.environment }} \
           --region us-central1 \
           --allow-unauthenticated \
-          --set-env-vars BASE_API_URL=${{ secrets.BASE_API_URL_UAT }}
+          --set-env-vars VITE_BASE_API_URL=${{ secrets.BASE_API_URL_UAT }}
