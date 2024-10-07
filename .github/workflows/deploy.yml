@@ -39,7 +39,7 @@ jobs:
       - name: Activate Service Account
         run: gcloud auth activate-service-account --key-file=/home/runner/work/_temp/gcp-key.json
 
-      - name: Deploy API to GCP
+      - name: Deploy UI
         run: |
           gcloud run deploy tasker-ui-${{ github.event.inputs.environment }} \
           --image docker.io/naumanz/tasker-ui:${{ github.event.inputs.environment }} \
