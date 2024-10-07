@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router'
 import BaseButton from '@/components/ui/button/BaseButton.vue'
 import BaseInput from '@/components/ui/input/BaseInput.vue'
 import BaseLabel from '@/components/ui/label/BaseLabel.vue'
+import { loadFromEnv } from '@/utils'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -23,6 +24,7 @@ const handleLogin = async () => {
 }
 </script>
 <template>
+  <pre>{{ loadFromEnv('BASE_API_URL') }}</pre>
   <div class="max-w-md mx-auto p-4">
     <h2 class="text-2xl font-semibold mb-4">Login</h2>
     <form @submit.prevent="handleLogin">
