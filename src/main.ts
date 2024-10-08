@@ -7,6 +7,7 @@ import axios from 'axios'
 
 import { loadFromEnv } from './utils.js'
 axios.defaults.baseURL = loadFromEnv('BASE_API_URL')
+console.log(axios.defaults.baseURL, 'API URL')
 
 // Intercept requests to set the Authorization header
 axios.interceptors.request.use(
