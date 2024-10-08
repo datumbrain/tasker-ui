@@ -51,7 +51,7 @@ jobs:
               echo "Unknown environment. Exiting."
               exit 1
           fi
-      - name: Deploy Frontend
+      - name: Deploy Frontend (${{ env.ENVIRONMENT}})
         run: |
           gcloud run deploy tasker-ui-${{ env.ENVIRONMENT }} \
           --image docker.io/naumanz/tasker-ui:${{ env.ENVIRONMENT }} \
