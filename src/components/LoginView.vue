@@ -24,7 +24,6 @@ const handleLogin = async () => {
 }
 </script>
 <template>
-  <pre>{{ loadFromEnv('BASE_API_URL') }}</pre>
   <div class="max-w-md mx-auto p-4">
     <h2 class="text-2xl font-semibold mb-4">Login</h2>
     <form @submit.prevent="handleLogin">
