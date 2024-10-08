@@ -6,7 +6,6 @@ import { useRouter } from 'vue-router'
 import BaseButton from '@/components/ui/button/BaseButton.vue'
 import BaseInput from '@/components/ui/input/BaseInput.vue'
 import BaseLabel from '@/components/ui/label/BaseLabel.vue'
-import { loadFromEnv } from '@/utils'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -50,6 +49,8 @@ const handleLogin = async () => {
       <BaseButton type="submit" class="w-full">Login</BaseButton>
     </form>
     <p v-if="error" class="text-red-500 mt-2">{{ error }}</p>
+
+    <RouterLink to="/signup" class="text-center mt-2 text-blue-500">Create Account</RouterLink>
   </div>
 </template>
 
