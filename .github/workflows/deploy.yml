@@ -39,10 +39,22 @@ jobs:
       - name: Activate Service Account
         run: gcloud auth activate-service-account --key-file=/home/runner/work/_temp/gcp-key.json
 
+      - name: Determine Environment Variables
+        run: |
+          if [[ "${{ github.event.inputs.environment }}" == "prod" ]]; then
+              echo "ENVIRONMENT=prod" >> $GITHUB_ENV
+              echo "BASE_API_URL=${{ secrets.BASE_API_URL_PROD }}" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.environment  }}" == "uat" ]]; then
+              echo "ENVIRONMENT=uat" >> $GITHUB_ENV
+              echo "BASE_API_URL=${{ secrets.BASE_API_URL_UAT }}" >> $GITHUB_ENV
+          else
+              echo "Unknown environment. Exiting."
+              exit 1
+          fi
       - name: Deploy Frontend
         run: |
-          gcloud run deploy tasker-ui-${{ github.event.inputs.environment }} \
-          --image docker.io/naumanz/tasker-ui:${{ github.event.inputs.environment }} \
+          gcloud run deploy tasker-ui-${{ env.ENVIRONMENT }} \
+          --image docker.io/naumanz/tasker-ui:${{ env.ENVIRONMENT }} \
           --region us-central1 \
           --allow-unauthenticated \
-          --set-env-vars VITE_BASE_API_URL=${{ secrets.BASE_API_URL_UAT }}
+          --set-env-vars VITE_BASE_API_URL=${{ secrets.BASE_API_URL }}

@@ -62,8 +62,10 @@ jobs:
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             echo "ENVIRONMENT=prod" >> $GITHUB_ENV
+            echo "BASE_API_URL=${{ secrets.BASE_API_URL_PROD }}" >> $GITHUB_ENV
           elif [[ "${{ github.ref }}" == "refs/heads/uat" ]]; then
             echo "ENVIRONMENT=uat" >> $GITHUB_ENV
+            echo "BASE_API_URL=${{ secrets.BASE_API_URL_UAT }}" >> $GITHUB_ENV
           else
             echo "Unknown branch. Exiting."
             exit 1
@@ -73,7 +75,7 @@ jobs:
       - name: Build Docker image
         run: |
           IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/tasker-ui:${{ env.ENVIRONMENT }}"
-          docker build --build-arg BASE_API_URL=${{ secrets.BASE_API_URL_UAT }} -t $IMAGE_TAG .
+          docker build --build-arg BASE_API_URL=${{ env.BASE_API_URL }} -t $IMAGE_TAG .
           echo "Built image with tag: $IMAGE_TAG"
 
       # Step 13: Push the Docker image to Docker Hub
