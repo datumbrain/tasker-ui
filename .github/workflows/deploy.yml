@@ -51,10 +51,10 @@ jobs:
               echo "Unknown environment. Exiting."
               exit 1
           fi
-      - name: Deploy Frontend (${{ env.ENVIRONMENT}})
+      - name: Deploy frontend to ${{ env.ENVIRONMENT}}
         run: |
           gcloud run deploy tasker-ui-${{ env.ENVIRONMENT }} \
           --image docker.io/naumanz/tasker-ui:${{ env.ENVIRONMENT }} \
           --region us-central1 \
           --allow-unauthenticated \
-          --set-env-vars VITE_BASE_API_URL=${{ secrets.BASE_API_URL }}
+          --set-env-vars VITE_BASE_API_URL=${{ env.BASE_API_URL }}
